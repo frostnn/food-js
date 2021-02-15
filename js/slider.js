@@ -42,10 +42,10 @@ window.addEventListener('DOMContentLoaded', () => {
     dotSlide.push(dot);
   }
   next.addEventListener('click', () => {
-    if (offset == +width.slice(0, width.length - 2) * (slide.length - 1)) {
+    if (offset == +width.replace(/\D/g, '') * (slide.length - 1)) {
       offset = 0;
     } else {
-      offset += +width.slice(0, width.length - 2);
+      offset += +width.replace(/\D/g, '');
     }
     slidesField.style.transform = `translateX(-${offset}px)`;
 
@@ -65,9 +65,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
   prev.addEventListener('click', () => {
     if (offset == 0) {
-      offset = +width.slice(0, width.length - 2) * (slide.length - 1);
+      offset = +width.replace(/\D/g, '') * (slide.length - 1);
     } else {
-      offset -= +width.slice(0, width.length - 2);
+      offset -= +width.replace(/\D/g, '');
     }
     slidesField.style.transform = `translateX(-${offset}px)`;
 
@@ -88,7 +88,7 @@ window.addEventListener('DOMContentLoaded', () => {
     dot.addEventListener('click', (e) => {
       const slideTo = e.target.getAttribute('data-slide-to');
       count = slideTo;
-      offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+      offset = +width.replace(/\D/g, '') * (slideTo - 1);
       slidesField.style.transform = `translateX(-${offset}px)`;
       slide.length < 10
         ? (current.textContent = `0${count}`)
